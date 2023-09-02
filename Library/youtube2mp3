@@ -1,6 +1,11 @@
 %pip install pytube
 
 from pytube import YouTube
-link = input("Enter a youtube video's URL")
-yt = YouTube(link)
-yt.streams.filter(only_audio = True).first().download()
+
+while True:
+  link = input("Enter your Youtube URL")
+  if link == "quit":
+    break
+  else:
+    yt = YouTube(link)
+    yt.streams.filter(only_audio = True).first().download()
