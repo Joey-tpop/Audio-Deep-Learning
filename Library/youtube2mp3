@@ -1,6 +1,7 @@
 %pip install pytube
 
 from pytube import YouTube
+import os
 
 while True:
   link = input("Enter your Youtube URL")
@@ -8,4 +9,6 @@ while True:
     break
   else:
     yt = YouTube(link)
-    yt.streams.filter(only_audio = True).first().download()
+    filepath = yt.streams.filter(only_audio = True).first().download()
+    mp3filepath = filepath.replace('mp4', 'mp3')
+    os.rename(filepath, mp3filepath)
